@@ -46,6 +46,11 @@
             opacity: 0.9;
         }
 
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -174,9 +179,28 @@
                 font-size: 12px;
             }
 
+            .feature-row td {
+                padding: 10px 8px;
+            }
+
+            .feature-number {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+            }
+
+            .new-feature {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
+
             .summary {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .summary-item {
+                width: 90%;
             }
         }
     </style>
@@ -189,8 +213,9 @@
             <p>ตารางเปรียบเทียบคุณสมบัติในระบบสำหรับการทำงาน</p>
         </div>
 
-        <table class="comparison-table">
-            <thead>
+        <div class="table-wrapper">
+            <table class="comparison-table">
+                <thead>
                 <tr>
                     <th class="table-header" style="width: 50px;">ลำดับ</th>
                     <th class="table-header" style="width: 400px;">คุณสมบัติ</th>
@@ -640,7 +665,8 @@
                     <td class="check-mark">✓</td>
                 </tr>
             </tbody>
-        </table>
+            </table>
+        </div>
 
         <div class="summary">
             <div class="summary-item">
@@ -657,41 +683,6 @@
             </div>
         </div>
     </div>
-    <script>
-
-        //  function downloadPDF() {
-        //      const element = document.querySelector(".container"); // ส่วนที่ต้องการแปลง
-        //      html2pdf().set({
-        //          margin: 0.5,
-        //          filename: 'myMaxx_vs_myMaxxV2.pdf',
-        //           image: { type: 'jpeg', quality: 0.98 },
-        //          html2canvas: { scale: 2, useCORS: true },
-        //           jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-        //       }).from(element).save();
-        //  }
-        function downloadPDF() {
-            const element = document.querySelector(".container");
-            html2pdf().set({
-                margin: 0.5,
-                filename: 'myMaxx_vs_myMaxxV2.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all'] } // ป้องกันตัดหัวข้อกลางแถว
-            }).from(element).save();
-        }
-
-        function downloadImage() {
-            const element = document.querySelector('.container');
-
-            html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'myMaxx_vs_myMaxxV2.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
-        }
-    </script>
 </body>
 
 </html>
